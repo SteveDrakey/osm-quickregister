@@ -1,3 +1,10 @@
 <h1 class="text-3xl font-bold underline">
   Hello world!
 </h1>
+<button (click)="auth.loginWithRedirect()">Log in</button>
+<button (click)="test()">Test</button>
+<h2>user</h2>
+<ul *ngIf="auth.user$ | async as user">
+  <li>{{ user.name }}</li>
+  <li>{{ user.email }}</li>
+</ul>`
