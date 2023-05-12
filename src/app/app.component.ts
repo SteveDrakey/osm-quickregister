@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { AuthService } from '@auth0/auth0-angular';
 export class AppComponent {
   title = 'osm-quickregister';
 
-  constructor(public auth: AuthService, private client: HttpClient ) {}
+  constructor(public auth: AuthenticationModule, private client: HttpClient ) {}
   
   async test() {
     // make http call
@@ -20,11 +20,6 @@ export class AppComponent {
     var result = await this.client.get('/.netlify/functions/patrols').toPromise();
     
     console.log(result);
-
-    this.auth.idTokenClaims$.subscribe((claims) => console.log(claims));
-    this.auth.isAuthenticated$.subscribe((isAuthenticated) => console.log(isAuthenticated));
-    this.auth.user$.subscribe((profile) => console.log(profile));
-
 
   }
 }
