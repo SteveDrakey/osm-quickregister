@@ -14,7 +14,10 @@ export class AppComponent {
   
   async test() {
     // make http call
-    var result = await this.client.get('https://www.onlinescoutmanager.co.uk/ext/members/attendance/?action=get&sectionid=35289&termid=626418&section=scouts&nototal=true').toPromise();
+    //var result = await this.client.get('https://www.onlinescoutmanager.co.uk/ext/members/attendance/?action=get&sectionid=35289&termid=626418&section=scouts&nototal=true').toPromise();
+
+    // make http call to hello-world
+    var result = await this.client.get('/.netlify/functions/hello-world').toPromise();
     
     console.log(result);
 
