@@ -36,7 +36,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
         allowedList: [
           {
             // Match any request that starts 'https://8-26-scouts-todmorden.uk.auth0.com/api/v2/' (note the asterisk)
-            uri: 'https://www.onlinescoutmanager.co.uk/ext/members/*',
+            uri: '/.netlify/functions/*',
             // // tokenOptions: {
             // //   authorizationParams: {
             // //     // The attached token should target this audience

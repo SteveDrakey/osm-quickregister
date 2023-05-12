@@ -17,7 +17,7 @@ export class AppComponent {
     //var result = await this.client.get('https://www.onlinescoutmanager.co.uk/ext/members/attendance/?action=get&sectionid=35289&termid=626418&section=scouts&nototal=true').toPromise();
 
     // make http call to hello-world
-    var result = await this.client.get('/.netlify/functions/hello-world').toPromise();
+    var result = await this.client.get('/.netlify/functions/patrols').toPromise();
     
     console.log(result);
 
