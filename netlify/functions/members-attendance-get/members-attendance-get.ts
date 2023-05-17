@@ -8,6 +8,9 @@ export const handler: Handler = async (event, context) => {
       'Authorization': event.headers['authorization'] || '',
     }
   });
+
+  console.log(event.headers['authorization'] );
+
   const data = await response.json();
   console.log(data);
   return {

@@ -1,53 +1,43 @@
-<style>
-    .grid-autofit {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 1rem;
-    }
-
-    .grid-right {
-        justify-items: end;
-    }
-</style>
-
-<div class="grid grid-cols-5 gap-4">
+<h2 class="text-center text-2xl sm:text-3xl font-extrabold text-slate-900">
+    Select your patrol, if you don't have one select unallocated
+</h2>
+<div class="grid grid-cols-5 gap-4 m-8">
     <div class="col-1"></div>
-    <div class="col-span-3"><button class="btn btn-ghost btn-outline w-full w-full">Unallocated</button></div>
+    <div class="col-span-3"><button (click)="filterMembers('Unallocated')" class="btn btn-ghost btn-outline  w-full">Unallocated</button></div>
     <div></div>
 
-    <div class="col-1 row-span-3  content-end...">
-        <div class="grid grid-cols-1 gap-4 content-end">
-            <button class="btn btn-ghost btn-outline w-full">Woodpecker</button>
-            <button class="btn btn-ghost btn-outline w-full">Cobra</button>
-            <button class="btn btn-ghost btn-outline w-full">Lion</button>
+    <div class="col-1 row-span-3 content-end...">
+        <p class="text-center text-lg mb-4">Inglebrough ⛰️</p>
+        <div class="grid grid-cols-1 gap-4">
+            <button (click)="filterMembers('Woodpecker')" class="btn btn-ghost btn-outline w-full">Woodpecker</button>
+            <button (click)="filterMembers('Cobra')" class="btn btn-ghost btn-outline w-full">Cobra</button>
+            <button (click)="filterMembers('Lion')" class="btn btn-ghost btn-outline w-full">Lion</button>
         </div>
+
     </div>
-    <div class="col-span-3 row-span-3 ...">
+    <div class="box-content border-8 border-gray-600 col-span-3 row-span-3 ...">
+        <p class="text-center m-4">If you're here, tap your name</p>
         <div class="grid-autofit place-content-center">
             <!-- <div class="grid grid-cols-4 gap-4 place-content-center ..."> -->
-            <div><button class="btn w-full">1 1</button></div>
-            <div><button class="btn w-full">2 2</button></div>
-            <div><button class="btn w-full">2 3</button></div>
-            <div><button class="btn w-full">Person 4</button></div>
-            <div><button class="btn w-full">Person 6</button></div>
-            <div><button class="btn w-full">Person 7</button></div>
-            <div><button class="btn w-full">Person 8</button></div>
-            <div><button class="btn w-full">Person 9</button></div>
-          
+            <button *ngFor="let member of filteredMembers" class="btn w-full">{{member.firstname}}
+                {{member.lastname}}</button>
         </div>
     </div>
-    <div class="col-span-1 row-span-3 ...">
-        <div class="grid grid-cols-1 gap-4 place-content-center">
-            <div><button class="btn btn-ghost btn-outline w-full">Fox</button></div>
-            <div><button class="btn btn-ghost btn-outline w-full">Badger</button></div>
-            <div><button class="btn btn-ghost btn-outline w-full">Peewit</button></div>
+    <div class="col-1 row-span-3 content-end...">
+        <p class="text-center text-lg mb-4">Whernside ⛰️</p>
+        <div class="grid grid-cols-1 gap-4">
+            <div><button (click)="filterMembers('Fox')" class="btn btn-ghost btn-outline w-full">Fox</button></div>
+            <div><button (click)="filterMembers('Badger')" class="btn btn-ghost btn-outline w-full">Badger</button></div>
+            <div><button (click)="filterMembers('Peewit')" class="btn btn-ghost btn-outline w-full">Peewit</button></div>
         </div>
     </div>
     <div></div>
+
     <div class="col-span-3 grid grid-cols-3 gap-4 place-content-center">
-        <div><button class="btn btn-ghost btn-outline w-full">Tiger</button></div>
-        <div><button class="btn btn-ghost btn-outline w-full">Falcon</button></div>
-        <div><button class="btn btn-ghost btn-outline w-full">Wolf</button></div>
+        <p class="col-span-3 text-lg text-center">Pen-y-ghent ⛰️</p>
+        <div><button (click)="filterMembers('Tiger')" class="btn btn-ghost btn-outline w-full">Tiger</button></div>
+        <div><button (click)="filterMembers('Falcon')" class="btn btn-ghost btn-outline w-full">Falcon</button></div>
+        <div><button (click)="filterMembers('Wolf')" class="btn btn-ghost btn-outline w-full">Wolf</button></div>
     </div>
     <div></div>
 </div>

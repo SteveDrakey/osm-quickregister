@@ -15,8 +15,9 @@ export class AuthInterceptor implements HttpInterceptor {
         // Only intercept requests to /.netlify/functions
         console.log('AuthInterceptor', request.url);
         
-        if (request.url.startsWith('/.netlify/functions') && !request.url.startsWith('/.netlify/functions/callback')) {
-            const token = localStorage.getItem('access_token');
+        if (request.url.startsWith('/.netlify/functions') ) {
+            const token = localStorage.getItem('accesstoken');
+            console.log('AuthInterceptor token', token);
             if (token) {
                 request = request.clone({
                     setHeaders: {

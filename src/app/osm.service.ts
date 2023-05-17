@@ -11,6 +11,8 @@ export class OsmService {
   private membersAttendanceSubject = new ReplaySubject<GetMemberAttendanceResponse>(1);
   MembersAttendance$: Observable<GetMemberAttendanceResponse> = this.membersAttendanceSubject.asObservable();
 
+  private members: Item[] = [];
+
   constructor(private http: HttpClient, private authservice: AuthenticationService) {
     console.log('OsmService constructor');
     authservice.loggedIn.subscribe((loggedIn) => { if (loggedIn) this.getMemberAttendance() });
@@ -22,24 +24,21 @@ export class OsmService {
     this.http.get<GetMemberAttendanceResponse>('/.netlify/functions/members-attendance-get').subscribe(
         (d) => this.membersAttendanceSubject.next(d)
     );  
-
-   
-
   }
 }
 
-interface GetMemberAttendanceResponse {
+export interface GetMemberAttendanceResponse {
   identifier: string;
   label: string;
   items: Item[];
   meetings: Meetings;
 }
 
-interface Meetings {
+export interface Meetings {
   meetings: Record<string, string>;
 }
 
-interface Item {
+export interface Item {
   firstname: string;
   lastname: string;
   photo_guid?: string;
