@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { AuthenticationModule } from './authentication/authentication.module';
+import { AuthenticationService } from './authentication/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 export class AppComponent {
   title = 'osm-quickregister';
 
-  constructor(public auth: AuthenticationModule, private client: HttpClient ) {}
+  constructor(public auth: AuthenticationService, private client: HttpClient ) {}
   
   async test() {
     // make http call

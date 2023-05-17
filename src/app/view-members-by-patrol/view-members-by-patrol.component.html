@@ -1,0 +1,53 @@
+<style>
+    .grid-autofit {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 1rem;
+    }
+
+    .grid-right {
+        justify-items: end;
+    }
+</style>
+
+<div class="grid grid-cols-5 gap-4">
+    <div class="col-1"></div>
+    <div class="col-span-3"><button class="btn btn-ghost btn-outline w-full w-full">Unallocated</button></div>
+    <div></div>
+
+    <div class="col-1 row-span-3  content-end...">
+        <div class="grid grid-cols-1 gap-4 content-end">
+            <button class="btn btn-ghost btn-outline w-full">Woodpecker</button>
+            <button class="btn btn-ghost btn-outline w-full">Cobra</button>
+            <button class="btn btn-ghost btn-outline w-full">Lion</button>
+        </div>
+    </div>
+    <div class="col-span-3 row-span-3 ...">
+        <div class="grid-autofit place-content-center">
+            <!-- <div class="grid grid-cols-4 gap-4 place-content-center ..."> -->
+            <div><button class="btn w-full">1 1</button></div>
+            <div><button class="btn w-full">2 2</button></div>
+            <div><button class="btn w-full">2 3</button></div>
+            <div><button class="btn w-full">Person 4</button></div>
+            <div><button class="btn w-full">Person 6</button></div>
+            <div><button class="btn w-full">Person 7</button></div>
+            <div><button class="btn w-full">Person 8</button></div>
+            <div><button class="btn w-full">Person 9</button></div>
+          
+        </div>
+    </div>
+    <div class="col-span-1 row-span-3 ...">
+        <div class="grid grid-cols-1 gap-4 place-content-center">
+            <div><button class="btn btn-ghost btn-outline w-full">Fox</button></div>
+            <div><button class="btn btn-ghost btn-outline w-full">Badger</button></div>
+            <div><button class="btn btn-ghost btn-outline w-full">Peewit</button></div>
+        </div>
+    </div>
+    <div></div>
+    <div class="col-span-3 grid grid-cols-3 gap-4 place-content-center">
+        <div><button class="btn btn-ghost btn-outline w-full">Tiger</button></div>
+        <div><button class="btn btn-ghost btn-outline w-full">Falcon</button></div>
+        <div><button class="btn btn-ghost btn-outline w-full">Wolf</button></div>
+    </div>
+    <div></div>
+</div>

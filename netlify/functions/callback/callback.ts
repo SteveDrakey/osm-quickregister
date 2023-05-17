@@ -1,5 +1,8 @@
-import { Handler } from '@netlify/functions'
+import { Handler, HandlerContext, HandlerEvent } from '@netlify/functions'
+import { Context } from '@netlify/functions/dist/function/context';
 import { AuthorizationCode } from 'simple-oauth2';
+import { URLSearchParams } from 'url';
+import fetch from 'node-fetch';
 
 const siteUrl = process.env['URL'] || 'http://localhost:3000'
 
@@ -15,25 +18,73 @@ const config = {
   }
 };
 
-export const handler: Handler = async (event, context) => {
-  // read code and scope from query string and store in variables 
-  if (!event.queryStringParameters) return { statusCode: 400, body: 'No query string parameters found' };
-  
-  const code  = event.queryStringParameters['code'] as string;
-  
-  const client = new AuthorizationCode(config);
+export const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+  try {
 
-  const tokenParams = {
-    code: code,
-    redirect_uri: `${siteUrl}`,
-  };
+    if (event.httpMethod !== 'GET') {
 
-  const result = await client.getToken(tokenParams);
+      const code = event.body as string;
 
-  console.log('result', result);
+      const postData = new URLSearchParams({
+        client_id: process.env['CLIENT_ID'] || '',
+        client_secret: process.env['CLIENT_SECRET'] || '',
+        refresh_token: code,
+        grant_type: 'refresh_token'
+      }).toString();
 
-  return  {
-    statusCode: 200,
-    body: JSON.stringify(result),
+      const response = await fetch('https://www.onlinescoutmanager.co.uk/oauth/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': postData.length.toString()
+        },
+        body: postData
+      });
+
+      const data = await response.json();
+      console.log(data);
+      return {
+        statusCode: 200,
+        body: JSON.stringify(data),
+      }
+
+    }
+
+    // read code and scope from query string and store in variables 
+    if (!event.queryStringParameters) {
+        return { statusCode: 400, body: 'No query string parameters found' };
+      }
+
+      const { code } = event.queryStringParameters;
+
+      if (!code) {
+        return { statusCode: 400, body: 'No code found in query string parameters' };
+      }
+
+      const client = new AuthorizationCode(config);
+
+      const tokenParams = {
+        code,
+        redirect_uri: siteUrl,
+      };
+
+      const result = await client.getToken(tokenParams);
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify(result),
+      }
+    } catch (error: unknown) {
+      console.error(error);
+      if (error instanceof Error) {
+        return {
+          statusCode: 500,
+          body: `Unexpected error: ${error.message}`,
+        };
+      }
+      return {
+        statusCode: 500,
+        body: 'An unexpected error occurred',
+      };
+    }
   }
-}

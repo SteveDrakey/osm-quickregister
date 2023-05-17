@@ -1,6 +1,16 @@
-<h1 class="text-3xl font-bold underline">
-  Hello world!!
-</h1>
-<button (click)="auth.connectToOSM()">Log in</button>
-<button (click)="test()">Test</button>
-<h2>user</h2>
+<!-- <app-view-members-by-patrol>
+</app-view-members-by-patrol> -->
+<div *ngIf="!(auth.loggedIn | async)" class="bg-green-500 flex items-center justify-center h-screen">
+  <div class="bg-white p-10 rounded shadow-lg w-full md:max-w-md">
+    <h1 class="text-2xl md:text-4xl font-bold mb-5 text-center">Easy Register</h1>
+    <p class="mb-5 text-center">Join our scout community now!</p>
+    <button class="block w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded text-center"
+      (click)="auth.connectToOSM()">Log in</button>
+  </div>
+</div>
+
+<app-view-members-by-patrol *ngIf="auth.loggedIn | async">
+
+</app-view-members-by-patrol> 
+
+
