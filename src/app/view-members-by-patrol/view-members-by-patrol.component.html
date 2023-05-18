@@ -3,7 +3,8 @@
 </h2>
 <div class="grid grid-cols-5 gap-4 m-8">
     <div class="col-1"></div>
-    <div class="col-span-3"><button (click)="filterMembers('Unallocated')" class="btn btn-ghost btn-outline  w-full">Unallocated</button></div>
+    <div class="col-span-3"><button (click)="filterMembers('Unallocated')"
+            class="btn btn-ghost btn-outline  w-full">Unallocated</button></div>
     <div></div>
 
     <div class="col-1 row-span-3 content-end...">
@@ -19,16 +20,19 @@
         <p class="text-center m-4">If you're here, tap your name</p>
         <div class="grid-autofit place-content-center">
             <!-- <div class="grid grid-cols-4 gap-4 place-content-center ..."> -->
-            <button *ngFor="let member of filteredMembers" class="btn w-full">{{member.firstname}}
-                {{member.lastname}}</button>
+            <button (click)="registerMember(member)" *ngFor="let member of filteredMembers" class="btn w-full">
+                {{member.firstname}} {{member.lastname}}
+            </button>
         </div>
     </div>
     <div class="col-1 row-span-3 content-end...">
         <p class="text-center text-lg mb-4">Whernside ⛰️</p>
         <div class="grid grid-cols-1 gap-4">
             <div><button (click)="filterMembers('Fox')" class="btn btn-ghost btn-outline w-full">Fox</button></div>
-            <div><button (click)="filterMembers('Badger')" class="btn btn-ghost btn-outline w-full">Badger</button></div>
-            <div><button (click)="filterMembers('Peewit')" class="btn btn-ghost btn-outline w-full">Peewit</button></div>
+            <div><button (click)="filterMembers('Badger')" class="btn btn-ghost btn-outline w-full">Badger</button>
+            </div>
+            <div><button (click)="filterMembers('Peewit')" class="btn btn-ghost btn-outline w-full">Peewit</button>
+            </div>
         </div>
     </div>
     <div></div>
