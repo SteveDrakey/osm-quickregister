@@ -10,9 +10,9 @@
     <div class="col-1 row-span-3 content-end...">
         <p class="text-center text-lg mb-4">Inglebrough ⛰️</p>
         <div class="grid grid-cols-1 gap-4">
-            <button (click)="filterMembers('Woodpecker')" class="btn btn-ghost btn-outline w-full">Woodpecker</button>
-            <button (click)="filterMembers('Cobra')" class="btn btn-ghost btn-outline w-full">Cobra</button>
             <button (click)="filterMembers('Lion')" class="btn btn-ghost btn-outline w-full">Lion</button>
+            <button (click)="filterMembers('Cobra')" class="btn btn-ghost btn-outline w-full">Cobra</button>
+            <button (click)="filterMembers('Woodpecker')" class="btn btn-ghost btn-outline w-full">Woodpecker</button>
         </div>
 
     </div>
@@ -20,28 +20,29 @@
         <p class="text-center m-4">If you're here, tap your name</p>
         <div class="grid-autofit place-content-center">
             <!-- <div class="grid grid-cols-4 gap-4 place-content-center ..."> -->
-            <button (click)="registerMember(member)" *ngFor="let member of filteredMembers" class="btn w-full">
-                {{member.firstname}} {{member.lastname}}
+            <button (click)="registerMember(member)" *ngFor="let member of filteredMembers"
+            class="btn w-full {{ (member | isMemberAttendingToday) == 'Yes' ? 'btn-outline' : 'n' }}">
+                {{member.firstname}} {{member.lastname}} {{ (member | isMemberAttendingToday) == 'Yes' ? '👍' : ''}}
+                
             </button>
+            
         </div>
     </div>
     <div class="col-1 row-span-3 content-end...">
         <p class="text-center text-lg mb-4">Whernside ⛰️</p>
         <div class="grid grid-cols-1 gap-4">
-            <div><button (click)="filterMembers('Fox')" class="btn btn-ghost btn-outline w-full">Fox</button></div>
-            <div><button (click)="filterMembers('Badger')" class="btn btn-ghost btn-outline w-full">Badger</button>
-            </div>
-            <div><button (click)="filterMembers('Peewit')" class="btn btn-ghost btn-outline w-full">Peewit</button>
-            </div>
+            <button (click)="filterMembers('Peewit')" class="btn btn-ghost btn-outline w-full">Peewit</button>
+            <button (click)="filterMembers('Fox')" class="btn btn-ghost btn-outline w-full">Fox</button>
+            <button (click)="filterMembers('Badger')" class="btn btn-ghost btn-outline w-full">Badger</button>
         </div>
     </div>
     <div></div>
 
     <div class="col-span-3 grid grid-cols-3 gap-4 place-content-center">
         <p class="col-span-3 text-lg text-center">Pen-y-ghent ⛰️</p>
-        <div><button (click)="filterMembers('Tiger')" class="btn btn-ghost btn-outline w-full">Tiger</button></div>
-        <div><button (click)="filterMembers('Falcon')" class="btn btn-ghost btn-outline w-full">Falcon</button></div>
-        <div><button (click)="filterMembers('Wolf')" class="btn btn-ghost btn-outline w-full">Wolf</button></div>
+        <button (click)="filterMembers('Tiger')" class="btn btn-ghost btn-outline w-full">Tiger</button>
+        <button (click)="filterMembers('Falcon')" class="btn btn-ghost btn-outline w-full">Falcon</button>
+        <button (click)="filterMembers('Wolf')" class="btn btn-ghost btn-outline w-full">Wolf</button>
     </div>
     <div></div>
 </div>

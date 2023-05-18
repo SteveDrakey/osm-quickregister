@@ -7,12 +7,14 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { ViewMembersByPatrolComponent } from './view-members-by-patrol/view-members-by-patrol.component';
 import { AuthInterceptor } from './authentication/auth.interceptor';
 import { DistinctPatrolPipe } from './distinct-patrol.pipe';
+import { IsMemberAttendingTodayPipe } from './is-member-attending-today.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewMembersByPatrolComponent,
-    DistinctPatrolPipe
+    DistinctPatrolPipe,
+    IsMemberAttendingTodayPipe
   ],
   imports: [
     BrowserModule,
